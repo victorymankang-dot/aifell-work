@@ -17,3 +17,6 @@
 ## 갤러그 3D 슈팅 게임
 [galaga3d/index.html](galaga3d/index.html) — 고전 갤러그에 착안한 3D 슈팅 게임 (Three.js, 단일 HTML 파일). 브라우저로 열어서 플레이.
 - ← → / A D: 이동, SPACE: 발사
+
+## 웹 개발 환경 설치 기록
+[dev-setup/nodejs-install.md](dev-setup/nodejs-install.md) — Windows에 Node.js(v24.22.1 LTS)·npm(11.19.1) 설치 과정과 Git 포함 버전 확인 결과.
