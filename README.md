@@ -13,3 +13,7 @@
 
 [검증 기준]
 해당 분야 전문가 한 사람이 전문적이라고 평가할 것.
+
+## 갤러그 3D 슈팅 게임
+[galaga3d/index.html](galaga3d/index.html) — 고전 갤러그에 착안한 3D 슈팅 게임 (Three.js, 단일 HTML 파일). 브라우저로 열어서 플레이.
+- ← → / A D: 이동, SPACE: 발사
