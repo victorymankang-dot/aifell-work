@@ -19,7 +19,7 @@
 ## 갤러그 3D 슈팅 게임
 [🎮 (https://victorymankang-dot.github.io/aifell-work/galaga3d/)
 고전 갤러그 스타일 3D 슈팅 게임 · 5단계 · 목숨 3개 · 보너스 무기 · 모바일 지원 ([소스](galaga3d/))
-회고
-과제가 재미있었다. 버그는 없었고, 난이도도 적당했다.
+**회고**
+
 ## 웹 개발 환경 설치 기록
 [dev-setup/nodejs-install.md](dev-setup/nodejs-install.md) — Windows에 Node.js(v24.22.1 LTS)·npm(11.19.1) 설치 과정과 Git 포함 버전 확인 결과.
