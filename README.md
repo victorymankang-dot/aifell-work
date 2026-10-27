@@ -17,7 +17,7 @@
 해당 분야 전문가 한 사람이 전문적이라고 평가할 것.
 
 ## 갤러그 3D 슈팅 게임
-🎮 **[갤러그 3D 바로 플레이하기 ▶](https://victorymankang-dot.github.io/aifell-work/galaga3d/)**
+[🎮 (https://victorymankang-dot.github.io/aifell-work/galaga3d/)
 고전 갤러그 스타일 3D 슈팅 게임 · 5단계 · 목숨 3개 · 보너스 무기 · 모바일 지원 ([소스](galaga3d/))
 
 ## 웹 개발 환경 설치 기록
