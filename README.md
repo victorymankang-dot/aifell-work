@@ -1,3 +1,5 @@
+🎮 **[갤러그 3D 바로 플레이하기 ▶](https://victorymankang-dot.github.io/aifell-work/galaga3d/)**
+
 # 아이펠 에이전트 과정 과제 제출
 [도메인 맥락]
 나는 미디어 도메인 10N 년 차이고, 미디어 작성 편집 발행 작업을 자동화/정리하고 싶습니다.
@@ -15,11 +17,7 @@
 해당 분야 전문가 한 사람이 전문적이라고 평가할 것.
 
 ## 갤러그 3D 슈팅 게임
-[galaga3d/](galaga3d/) — 고전 갤러그에 착안한 3D 슈팅 게임 (Three.js). `index.html`, `styles.css`, `script.js` 세 파일로 구성. `index.html`을 브라우저로 열거나 `node serve.js` 후 http://localhost:8000 접속.
-- 총 5단계, 목숨 3개. 5단계를 모두 클리어하면 승리, 목숨을 다 잃으면 게임 오버 (결과 화면 + 다시하기)
-- 적과 충돌하거나 적 탄에 맞으면 폭발, 적을 맞출 때마다 점수 누적
-- 1000점마다 · 생존 60초마다 보너스 무기 아이템 등장 (단발 → 쌍발 → 3연발, 15초)
-- 조작: ← → / A D 이동, SPACE 발사 (모바일은 화면 아래 버튼)
+고전 갤러그 스타일 3D 슈팅 게임 · 5단계 · 목숨 3개 · 보너스 무기 · 모바일 지원 ([소스](galaga3d/))
 
 ## 웹 개발 환경 설치 기록
 [dev-setup/nodejs-install.md](dev-setup/nodejs-install.md) — Windows에 Node.js(v24.22.1 LTS)·npm(11.19.1) 설치 과정과 Git 포함 버전 확인 결과.
