@@ -1,0 +1,139 @@
+:root {
+  --c-ready: #3fa9ff;
+  --c-fight: #3ddc84;
+  --c-danger: #ff4d4d;
+  --c-clear: #ffd43b;
+  --c-hit: #ff9f1c;
+  --c-w1: #e6e6e6;
+  --c-w2: #33e0ff;
+  --c-w3: #ff5cf0;
+  --panel: rgba(10, 14, 30, 0.72);
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0; height: 100%; overflow: hidden;
+  background: #000; color: #fff;
+  font-family: "Courier New", "Malgun Gothic", monospace;
+  -webkit-user-select: none; user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+canvas { display: block; }
+
+/* ---------- HUD ---------- */
+#hud, #hud2 {
+  position: fixed; left: 0; right: 0;
+  display: flex; gap: 8px; justify-content: center;
+  padding: 0 10px; pointer-events: none; z-index: 5;
+}
+#hud { top: 8px; }
+#hud2 { top: 66px; }
+
+.hud-box {
+  background: var(--panel); border: 1px solid #334; border-radius: 8px;
+  padding: 4px 12px; min-width: 96px; text-align: center;
+}
+.hud-box .label { display: block; font-size: 11px; color: #f66; letter-spacing: 1px; }
+.hud-box .value { font-size: 20px; font-weight: bold; }
+#livesBox.low .value { color: var(--c-danger); animation: blink 0.8s steps(2) infinite; }
+
+.meter {
+  background: var(--panel); border: 1px solid #334; border-radius: 8px;
+  padding: 4px 10px; width: 260px; max-width: 48vw; font-size: 13px;
+}
+.meter-text { display: flex; justify-content: space-between; gap: 6px; white-space: nowrap; }
+.meter .sub { color: #aab; }
+.bar { height: 6px; background: #223; border-radius: 3px; margin-top: 4px; overflow: hidden; }
+.fill { height: 100%; width: 0; background: var(--c-clear); transition: width 0.2s linear; }
+
+.weapon-1 { border-color: var(--c-w1); }
+.weapon-1 #weaponName { color: var(--c-w1); }
+.weapon-1 .fill { background: var(--c-w1); }
+.weapon-2 { border-color: var(--c-w2); box-shadow: 0 0 10px var(--c-w2); }
+.weapon-2 #weaponName { color: var(--c-w2); }
+.weapon-2 .fill { background: var(--c-w2); }
+.weapon-3 { border-color: var(--c-w3); box-shadow: 0 0 12px var(--c-w3); }
+.weapon-3 #weaponName { color: var(--c-w3); }
+.weapon-3 .fill { background: var(--c-w3); }
+
+/* ---------- 상태 배너 ---------- */
+#banner {
+  position: fixed; top: 124px; left: 50%; transform: translateX(-50%);
+  padding: 6px 22px; border-radius: 20px; border: 2px solid currentColor;
+  background: var(--panel); font-weight: bold; font-size: 18px; letter-spacing: 2px;
+  pointer-events: none; z-index: 5; white-space: nowrap;
+}
+.st-ready  { color: var(--c-ready); }
+.st-fight  { color: var(--c-fight); }
+.st-danger { color: var(--c-danger); animation: blink 0.5s steps(2) infinite; }
+.st-clear  { color: var(--c-clear); }
+.st-hit    { color: var(--c-hit); }
+.st-over   { color: var(--c-danger); }
+
+#toast {
+  position: fixed; top: 58%; left: 50%; transform: translate(-50%, -50%);
+  font-size: 30px; font-weight: bold; color: var(--c-w2); text-shadow: 0 0 14px var(--c-w2);
+  pointer-events: none; z-index: 6; opacity: 0; transition: opacity 0.3s; text-align: center;
+  white-space: pre-line;
+}
+#toast.show { opacity: 1; }
+
+/* ---------- 오버레이 (시작 / 결과) ---------- */
+.overlay {
+  position: fixed; inset: 0; z-index: 10;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  background: rgba(0, 0, 0, 0.7); padding: 16px; text-align: center;
+}
+.overlay.hidden { display: none; }
+.overlay h1 {
+  font-size: clamp(36px, 9vw, 60px); margin: 0 0 14px;
+  color: #4cf; text-shadow: 0 0 16px #4cf; letter-spacing: 4px;
+}
+.overlay h1.lose { color: var(--c-danger); text-shadow: 0 0 16px var(--c-danger); }
+.overlay h1.win { color: var(--c-clear); text-shadow: 0 0 16px var(--c-clear); }
+.rules { text-align: left; color: #ffe066; font-size: 15px; line-height: 1.7; margin: 0 0 10px; padding-left: 20px; max-width: 460px; }
+.keys { color: #aab; font-size: 14px; margin: 0 0 18px; }
+.stats { border-collapse: collapse; margin-bottom: 20px; font-size: 18px; }
+.stats th { text-align: left; color: #aab; font-weight: normal; padding: 6px 18px 6px 0; }
+.stats td { text-align: right; font-weight: bold; padding: 6px 0; }
+
+.big-btn {
+  font: inherit; font-size: 22px; font-weight: bold;
+  min-width: 200px; min-height: 56px; padding: 10px 28px;
+  border: 2px solid #4cf; border-radius: 12px; background: #0b2a44; color: #fff;
+  cursor: pointer;
+}
+.big-btn:hover, .big-btn:focus-visible { background: #12456e; outline: none; }
+
+/* ---------- 모바일 조작 버튼 ---------- */
+#touch {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 8;
+  display: none; justify-content: space-between; align-items: flex-end;
+  padding: 0 16px calc(16px + env(safe-area-inset-bottom));
+  pointer-events: none;
+}
+#touch .pad { display: flex; gap: 14px; }
+.tbtn {
+  pointer-events: auto; touch-action: none;
+  width: 76px; height: 76px; border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.12);
+  color: #fff; font: inherit; font-size: 28px;
+}
+.tbtn.fire { width: 96px; height: 96px; font-size: 20px; font-weight: bold; border-color: var(--c-danger); background: rgba(255, 77, 77, 0.25); }
+.tbtn.active { background: rgba(255, 255, 255, 0.35); }
+
+@media (hover: none), (pointer: coarse) {
+  #touch { display: flex; }
+}
+
+@media (max-width: 600px) {
+  .hide-narrow { display: none; }
+  .hud-box { min-width: 0; flex: 1; padding: 3px 6px; }
+  .hud-box .value { font-size: 17px; }
+  .meter { flex: 1; font-size: 12px; padding: 3px 6px; }
+  .meter .sub { display: none; }
+  #hud2 { top: 60px; }
+  #banner { top: 110px; font-size: 15px; }
+}
+
+@keyframes blink { 50% { opacity: 0.35; } }
